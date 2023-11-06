@@ -25,3 +25,5 @@ console.
 
     >console: http://localhost:8090/h2-console/
     >url: jdbc:h2:mem:prices
+
+![Database diagram](doc/database_schema.png)
