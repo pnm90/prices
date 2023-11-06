@@ -25,3 +25,4 @@ console.
 
     >console: http://localhost:8090/h2-console/
     >url: jdbc:h2:mem:prices
+

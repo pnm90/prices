@@ -1,0 +1,39 @@
+server:
+    port: 8090
+    servlet:
+        application-display-name: '@application.title@'
+    shutdown: graceful
+spring:
+    aop:
+        auto: false
+    datasource:
+        driverClassName: org.h2.Driver
+        password: admin
+        url: jdbc:h2:mem:prices
+        username: admin
+        schema: schema.sql
+        data: data.sql
+    h2:
+        console:
+            enabled: true
+            path: /h2-console/
+            settings:
+                trace: false
+                web-allow-others: false
+
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        defer-datasource-initialization: false
+        hibernate:
+            ddl-auto: validate
+    lifecycle:
+        timeout-per-shutdown-phase: 20
+    main:
+        allow-bean-definition-overriding: true
+    mvc:
+        async:
+            request-timeout: 100000
+    sql:
+        init:
+            continue-on-error: false
+            mode: EMBEDDED
