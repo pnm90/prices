@@ -1,7 +1,7 @@
 package com.pnm.prices.adapters.input.model.output;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Value;
 
@@ -11,14 +11,16 @@ public class ProductPriceDto {
 
   String productId;
 
-  Integer priceList;
+  String priceList;
 
-  String rate;
+  String brand;
 
-  LocalDate startDate;
+  LocalDateTime startDate;
 
-  LocalDate endDate;
+  LocalDateTime endDate;
 
   BigDecimal finalPrice;
+
+  String currency;
 
 }

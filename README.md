@@ -27,3 +27,10 @@ console.
     >url: jdbc:h2:mem:prices
 
 ![Database diagram](doc/database_schema.png)
+
+### API Documentation
+#### OpenApi
+    >http://localhost:8090/prices-api-docs
+#### Swagger
+    >http://localhost:8090/swagger-ui/index.html
+

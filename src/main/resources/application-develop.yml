@@ -39,3 +39,6 @@ spring:
         init:
             continue-on-error: false
             mode: EMBEDDED
+springdoc:
+    api-docs:
+         path: /prices-api-docs
