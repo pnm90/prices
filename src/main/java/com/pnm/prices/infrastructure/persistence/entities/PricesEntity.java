@@ -25,7 +25,7 @@ public class PricesEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Integer id;
 
   @ManyToOne
   @JoinColumn(name = "BRAND_ID")

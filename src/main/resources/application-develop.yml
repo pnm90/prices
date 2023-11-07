@@ -31,6 +31,8 @@ spring:
     main:
         allow-bean-definition-overriding: true
     mvc:
+#         servlet:
+#           path: "pnm"
         async:
             request-timeout: 100000
     sql:
