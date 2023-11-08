@@ -1,9 +1,10 @@
-package com.pnm.prices.adapters.input.controller.impl;
+package com.pnm.prices.adapters.input.controller;
 
-import com.pnm.prices.adapters.input.controller.PricesOperations;
+import com.pnm.prices.adapters.input.model.input.PricesRequestDto;
 import com.pnm.prices.adapters.input.model.output.ProductPriceDto;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import com.pnm.prices.ports.input.controller.PricesOperations;
+import com.pnm.prices.ports.input.services.FindPriceEndpointPort;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,25 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("api/prices")
-public class PricesController  implements PricesOperations {
+@RequiredArgsConstructor
+public class PricesController implements PricesOperations {
 
-  private static final String ENDPOINT_VERSION = "v1";
-
-  private static final String PATH = "api/prices";
-
+  private final FindPriceEndpointPort findPriceEndpointPort;
   @Override
-  public ProductPriceDto findProductPrice() {
+  public ProductPriceDto findProductPrice(PricesRequestDto request) {
 
-    log.info("Request received");
+    log.info("Request received {}", request);
 
-//    throw new UserNotFoundException("Product prices");
-    return ProductPriceDto.builder()
-        .productId("1")
-        .priceList(1)
-        .rate("1")
-        .finalPrice(BigDecimal.valueOf(1000))
-        .startDate(LocalDateTime.now())
-        .endDate(LocalDateTime.now())
-        .build();
+    return findPriceEndpointPort.findProductPriceInPeriod(request);
   }
 }

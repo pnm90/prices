@@ -2,7 +2,7 @@ package com.pnm.prices.application.services;
 
 import com.pnm.prices.application.domain.model.Price;
 import com.pnm.prices.application.usecase.FindProductUseCase;
-import com.pnm.prices.exception.PriceProductNotFoundException;
+import com.pnm.prices.exception.ProductNotFoundException;
 import com.pnm.prices.infrastructure.persistence.entities.PriceEntity;
 import com.pnm.prices.infrastructure.persistence.mappers.PriceEntityMapper;
 import com.pnm.prices.infrastructure.persistence.repositories.PricesReposiroty;
@@ -25,12 +25,14 @@ public class FindProductService implements FindProductUseCase {
 
     List<PriceEntity> products = pricesReposiroty.findAllByProductId(productId);
     List<PriceEntity> productsBrand = products.stream()
-        .filter(item -> item.getBrand().getName().equals(brand))
-        .filter(item -> applicationDate.isAfter(item.getStartDate()) || applicationDate.isBefore(item.getEndDate()))
+        .filter(item -> item.getBrand().getName().equalsIgnoreCase(brand))
+        .filter(item -> applicationDate.isAfter(item.getStartDate())
+            && applicationDate.isBefore(item.getEndDate()))
         .sorted(Comparator.comparingInt(PriceEntity::getPriority))
-        .toList();
+        .toList()
+        .reversed();
     if (productsBrand.isEmpty()) {
-      throw new PriceProductNotFoundException(productId);
+      throw new ProductNotFoundException(String.valueOf(productId));
     }
     return PriceEntityMapper.toDomain(productsBrand.getFirst());
   }

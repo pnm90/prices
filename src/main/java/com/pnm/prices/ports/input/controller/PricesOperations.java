@@ -1,9 +1,8 @@
-package com.pnm.prices.adapters.input.controller;
+package com.pnm.prices.ports.input.controller;
 
 import com.pnm.prices.adapters.input.model.input.PricesRequestDto;
 import com.pnm.prices.adapters.input.model.output.ProductPriceDto;
 import jakarta.validation.Valid;
-import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -17,10 +16,8 @@ public interface PricesOperations {
 
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
-  @GetMapping(value = "/find-prices"
-//      , consumes = MediaType.APPLICATION_JSON_VALUE,
-//      produces = MediaType.APPLICATION_JSON_VALUE
+  @GetMapping(value = "/find-prices",
+      produces = MediaType.APPLICATION_JSON_VALUE
   )
-//  ProductPriceDto findProductPrice(@RequestBody @Valid PricesRequestDto request);
-  ProductPriceDto findProductPrice();
+  ProductPriceDto findProductPrice(@RequestBody @Valid PricesRequestDto request);
 }
